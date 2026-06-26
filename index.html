@@ -4,11 +4,9 @@
   <meta charset="UTF-8">
   <title>E‑Profile | Space Gaming Innovation Theme</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- redeploy trigger -->
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
-  <!-- redeploy test -->
   <style>
     :root {
       --bg-color: #0b0c10;
@@ -112,7 +110,6 @@
   <div id="stars"></div>
   <header>
     <h1>E‑Profile</h1>
-    <!-- redeploy marker -->
     <p>A dedicated and results‑driven CSIT engineering student at REVA University, combining academic excellence with proven leadership and a relentless drive to succeed.</p>
     <button class="theme-toggle" onclick="toggleTheme()">Switch Mode</button>
   </header>
@@ -161,7 +158,7 @@
   </footer>
 
   <script>
-    // redeploy comment
+    // Initialize background particles
     particlesJS("stars", {
       "particles": {
         "number": { "value": 80 },
@@ -180,4 +177,30 @@
       }
     });
 
-    // Chart.js setup
+    // Theme toggle logic
+    function toggleTheme() {
+      document.body.classList.toggle('light');
+    }
+
+    // Intersection Observer to reveal hidden sections smoothly on scroll
+    const sections = document.querySelectorAll('section');
+    const observerOptions = {
+      root: null,
+      threshold: 0.1
+    };
+
+    const sectionObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    sections.forEach(section => {
+      sectionObserver.observe(section);
+    });
+  </script>
+</body>
+</html>
