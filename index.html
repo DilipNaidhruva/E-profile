@@ -4,9 +4,11 @@
   <meta charset="UTF-8">
   <title>E‑Profile | Space Gaming Innovation Theme</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- redeploy trigger -->
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
+  <!-- redeploy test -->
   <style>
     :root {
       --bg-color: #0b0c10;
@@ -110,6 +112,7 @@
   <div id="stars"></div>
   <header>
     <h1>E‑Profile</h1>
+    <!-- redeploy marker -->
     <p>A dedicated and results‑driven CSIT engineering student at REVA University, combining academic excellence with proven leadership and a relentless drive to succeed.</p>
     <button class="theme-toggle" onclick="toggleTheme()">Switch Mode</button>
   </header>
@@ -130,4 +133,51 @@
       <div class="skill-block">
         <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg"/>
         <canvas id="programmingChart"></canvas>
-        <div class="progress-bar"><div class="progress-fill" style="--percent:99%">
+        <div class="progress-bar"><div class="progress-fill" style="--percent:99%"></div></div>
+      </div>
+      <div class="skill-block">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg"/>
+        <canvas id="dataChart"></canvas>
+        <div class="progress-bar"><div class="progress-fill" style="--percent:92%"></div></div>
+      </div>
+      <div class="skill-block">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/file-excel/file-excel-original.svg"/>
+        <canvas id="analyticsChart"></canvas>
+        <div class="progress-bar"><div class="progress-fill" style="--percent:96%"></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Achievements</h2>
+    <span class="badge">🏅 Academic Merit Award</span>
+    <span class="badge">🎮 Dota 2 Runner‑Up</span>
+    <span class="badge">⚽ Football Champion</span>
+    <span class="badge">🎯 StarCraft II Top Finish</span>
+  </section>
+
+  <footer>
+    <p>© 2026 CSIT Engineering Student | REVA University</p>
+  </footer>
+
+  <script>
+    // redeploy comment
+    particlesJS("stars", {
+      "particles": {
+        "number": { "value": 80 },
+        "color": { "value": "#66fcf1" },
+        "shape": { "type": "circle" },
+        "opacity": { "value": 0.6 },
+        "size": { "value": 2 },
+        "line_linked": {
+          "enable": true,
+          "distance": 120,
+          "color": "#45a29e",
+          "opacity": 0.4,
+          "width": 1
+        },
+        "move": { "enable": true, "speed": 1.5 }
+      }
+    });
+
+    // Chart.js setup
