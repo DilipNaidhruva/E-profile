@@ -4,11 +4,8 @@
   <meta charset="UTF-8">
   <title>E‑Profile | Space Gaming Innovation Theme</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Futuristic font -->
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
-  <!-- Chart.js -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <!-- Particles.js -->
   <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
   <style>
     :root {
@@ -51,10 +48,7 @@
       transform: translateY(20px);
       transition: all 0.8s ease;
     }
-    section.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    section.visible { opacity: 1; transform: translateY(0); }
     h2 {
       color: #66fcf1;
       border-bottom: 2px solid #45a29e;
@@ -67,99 +61,47 @@
       padding: 15px;
       border-radius: 8px;
       margin-bottom: 12px;
-      transition: transform 0.3s, box-shadow 0.3s, background 0.5s, color 0.5s;
+      transition: transform 0.3s, box-shadow 0.3s;
       font-size: 0.95em;
       cursor: pointer;
     }
-    .card:hover, .soft-skill:hover {
-      transform: scale(1.03);
-      box-shadow: 0 0 15px #66fcf1;
-    }
+    .card:hover, .soft-skill:hover { transform: scale(1.03); box-shadow: 0 0 15px #66fcf1; }
     .skills-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
       gap: 15px;
       justify-items: center;
     }
-    .skill-block {
-      text-align: center;
-    }
-    .skill-block img {
-      width: 28px;
-      margin-bottom: 5px;
-    }
+    .skill-block { text-align: center; }
+    .skill-block img { width: 28px; margin-bottom: 5px; }
     canvas {
-      width: 120px !important;
-      height: 120px !important;
+      width: 120px !important; height: 120px !important;
       background: var(--bg-color);
-      border-radius: 50%;
-      padding: 5px;
+      border-radius: 50%; padding: 5px;
       box-shadow: 0 0 8px #45a29e;
       cursor: pointer;
-      transition: background 0.5s;
     }
-    .progress-bar {
-      background: #222;
-      border-radius: 8px;
-      overflow: hidden;
-      margin: 6px 0;
-    }
-    .progress-fill {
-      height: 10px;
-      width: 0;
-      background: #66fcf1;
-      animation: fillBar 2s forwards;
-    }
+    .progress-bar { background: #222; border-radius: 8px; overflow: hidden; margin: 6px 0; }
+    .progress-fill { height: 10px; width: 0; background: #66fcf1; animation: fillBar 2s forwards; }
     @keyframes fillBar { to { width: var(--percent); } }
-    .timeline {
-      position: relative;
-      margin: 20px 0;
-      padding-left: 20px;
-      border-left: 2px solid #66fcf1;
-    }
-    .timeline-item {
-      margin: 15px 0;
-      position: relative;
-    }
+    .timeline { position: relative; margin: 20px 0; padding-left: 20px; border-left: 2px solid #66fcf1; }
+    .timeline-item { margin: 15px 0; position: relative; }
     .timeline-item::before {
-      content: '';
-      position: absolute;
-      left: -11px;
-      top: 5px;
-      width: 15px;
-      height: 15px;
-      background: #66fcf1;
-      border-radius: 50%;
-      box-shadow: 0 0 10px #45a29e;
+      content: ''; position: absolute; left: -11px; top: 5px;
+      width: 15px; height: 15px; background: #66fcf1;
+      border-radius: 50%; box-shadow: 0 0 10px #45a29e;
     }
     .badge {
-      display: inline-block;
-      background: #45a29e;
-      color: #fff;
-      padding: 5px 10px;
-      border-radius: 12px;
-      margin: 5px;
-      font-size: 0.8em;
-      box-shadow: 0 0 10px #66fcf1;
+      display: inline-block; background: #45a29e; color: #fff;
+      padding: 5px 10px; border-radius: 12px; margin: 5px;
+      font-size: 0.8em; box-shadow: 0 0 10px #66fcf1;
     }
-    footer {
-      text-align: center;
-      padding: 15px;
-      background: #0f2027;
-      color: var(--text-color);
-      font-size: 0.9em;
-    }
+    footer { text-align: center; padding: 15px; background: #0f2027; color: var(--text-color); font-size: 0.9em; }
     #stars { position: fixed; width: 100%; height: 100%; z-index: -1; }
     .theme-toggle {
-      position: absolute;
-      top: 10px;
-      right: 20px;
-      background: #45a29e;
-      color: #fff;
-      border: none;
-      padding: 8px 12px;
-      border-radius: 5px;
-      cursor: pointer;
+      position: absolute; top: 10px; right: 20px;
+      background: #45a29e; color: #fff; border: none;
+      padding: 8px 12px; border-radius: 5px; cursor: pointer;
       font-family: 'Orbitron', sans-serif;
     }
   </style>
@@ -188,24 +130,4 @@
       <div class="skill-block">
         <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg"/>
         <canvas id="programmingChart"></canvas>
-        <div class="progress-bar"><div class="progress-fill" style="--percent:99%"></div></div>
-      </div>
-      <div class="skill-block">
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg"/>
-        <canvas id="dataChart"></canvas>
-        <div class="progress-bar"><div class="progress-fill" style="--percent:92%"></div></div>
-      </div>
-      <div class="skill-block">
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/file-excel/file-excel-original.svg"/>
-        <canvas id="analyticsChart"></canvas>
-        <div class="progress-bar"><div class="progress-fill" style="--percent:96%"></div></div>
-      </div>
-    </div>
-  </section>
-
-  <section>
-    <h2>Achievements</h2>
-    <span class="badge">🏅 Academic Merit Award</span>
-    <span class="badge">🎮 Dota 2 Runner‑Up</span>
-    <span class="badge">⚽ Football Champion</span>
-    <span
+        <div class="progress-bar"><div class="progress-fill" style="--percent:99%">
