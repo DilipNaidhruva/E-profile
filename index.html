@@ -77,24 +77,24 @@
     }
     .skills-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-      gap: 20px;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 15px;
       justify-items: center;
     }
     .skill-block {
       text-align: center;
     }
     .skill-block img {
-      width: 30px;
+      width: 28px;
       margin-bottom: 5px;
     }
     canvas {
-      width: 160px !important;
-      height: 160px !important;
+      width: 120px !important;
+      height: 120px !important;
       background: var(--bg-color);
       border-radius: 50%;
-      padding: 8px;
-      box-shadow: 0 0 12px #45a29e;
+      padding: 5px;
+      box-shadow: 0 0 8px #45a29e;
       cursor: pointer;
       transition: background 0.5s;
     }
@@ -102,10 +102,10 @@
       background: #222;
       border-radius: 8px;
       overflow: hidden;
-      margin: 8px 0;
+      margin: 6px 0;
     }
     .progress-fill {
-      height: 12px;
+      height: 10px;
       width: 0;
       background: #66fcf1;
       animation: fillBar 2s forwards;
@@ -195,3 +195,17 @@
         <canvas id="dataChart"></canvas>
         <div class="progress-bar"><div class="progress-fill" style="--percent:92%"></div></div>
       </div>
+      <div class="skill-block">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/file-excel/file-excel-original.svg"/>
+        <canvas id="analyticsChart"></canvas>
+        <div class="progress-bar"><div class="progress-fill" style="--percent:96%"></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Achievements</h2>
+    <span class="badge">🏅 Academic Merit Award</span>
+    <span class="badge">🎮 Dota 2 Runner‑Up</span>
+    <span class="badge">⚽ Football Champion</span>
+    <span
