@@ -6,77 +6,161 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- Futuristic font -->
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
-  <!-- Chart.js for radial charts -->
+  <!-- Chart.js -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <!-- Particles.js for interactive background -->
+  <!-- Particles.js -->
   <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
   <style>
+    :root {
+      --bg-color: #0b0c10;
+      --text-color: #c5c6c7;
+      --header-bg: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      --card-bg: rgba(31,40,51,0.9);
+    }
+    body.light {
+      --bg-color: #f4f4f9;
+      --text-color: #222;
+      --header-bg: linear-gradient(135deg, #e0e0e0, #f9f9f9);
+      --card-bg: #fff;
+    }
     body {
       margin: 0;
       font-family: 'Orbitron', sans-serif;
-      background: #0b0c10;
-      color: #c5c6c7;
-      overflow-x: hidden;
+      background: var(--bg-color);
+      color: var(--text-color);
+      transition: background 0.5s, color 0.5s;
     }
     header {
       text-align: center;
-      padding: 60px 20px;
-      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      padding: 40px 20px;
+      background: var(--header-bg);
       color: #66fcf1;
       animation: glowText 2s infinite alternate;
+      position: relative;
     }
     @keyframes glowText {
-      from { text-shadow: 0 0 10px #45a29e; }
-      to { text-shadow: 0 0 25px #66fcf1; }
+      from { text-shadow: 0 0 8px #45a29e; }
+      to { text-shadow: 0 0 18px #66fcf1; }
     }
-    h1 { font-size: 2.5em; margin: 0; }
+    h1 { font-size: 2em; margin: 0; }
     section {
-      max-width: 1000px;
+      max-width: 900px;
       margin: auto;
-      padding: 40px 20px;
+      padding: 30px 20px;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.8s ease;
+    }
+    section.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
     h2 {
       color: #66fcf1;
       border-bottom: 2px solid #45a29e;
       padding-bottom: 5px;
-      margin-bottom: 20px;
+      margin-bottom: 15px;
+      font-size: 1.3em;
     }
-    ul { list-style: none; padding: 0; }
-    ul li { margin-bottom: 15px; }
-    .skills-container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 40px;
+    .card, .soft-skill {
+      background: var(--card-bg);
+      padding: 15px;
+      border-radius: 8px;
+      margin-bottom: 12px;
+      transition: transform 0.3s, box-shadow 0.3s, background 0.5s, color 0.5s;
+      font-size: 0.95em;
+      cursor: pointer;
+    }
+    .card:hover, .soft-skill:hover {
+      transform: scale(1.03);
+      box-shadow: 0 0 15px #66fcf1;
+    }
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 20px;
+      justify-items: center;
+    }
+    .skill-block {
+      text-align: center;
+    }
+    .skill-block img {
+      width: 30px;
+      margin-bottom: 5px;
     }
     canvas {
-      background: #0b0c10;
+      width: 160px !important;
+      height: 160px !important;
+      background: var(--bg-color);
       border-radius: 50%;
-      padding: 20px;
-      box-shadow: 0 0 20px #45a29e;
+      padding: 8px;
+      box-shadow: 0 0 12px #45a29e;
+      cursor: pointer;
+      transition: background 0.5s;
     }
-    .soft-skill, .card {
-      background: rgba(31,40,51,0.9);
-      padding: 20px;
-      border-radius: 10px;
-      margin-bottom: 15px;
-      transition: transform 0.3s, box-shadow 0.3s;
+    .progress-bar {
+      background: #222;
+      border-radius: 8px;
+      overflow: hidden;
+      margin: 8px 0;
     }
-    .soft-skill:hover, .card:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 25px #66fcf1;
+    .progress-fill {
+      height: 12px;
+      width: 0;
+      background: #66fcf1;
+      animation: fillBar 2s forwards;
+    }
+    @keyframes fillBar { to { width: var(--percent); } }
+    .timeline {
+      position: relative;
+      margin: 20px 0;
+      padding-left: 20px;
+      border-left: 2px solid #66fcf1;
+    }
+    .timeline-item {
+      margin: 15px 0;
+      position: relative;
+    }
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -11px;
+      top: 5px;
+      width: 15px;
+      height: 15px;
+      background: #66fcf1;
+      border-radius: 50%;
+      box-shadow: 0 0 10px #45a29e;
+    }
+    .badge {
+      display: inline-block;
+      background: #45a29e;
+      color: #fff;
+      padding: 5px 10px;
+      border-radius: 12px;
+      margin: 5px;
+      font-size: 0.8em;
+      box-shadow: 0 0 10px #66fcf1;
     }
     footer {
       text-align: center;
-      padding: 20px;
+      padding: 15px;
       background: #0f2027;
-      color: #c5c6c7;
+      color: var(--text-color);
+      font-size: 0.9em;
     }
-    #stars {
-      position: fixed;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
+    #stars { position: fixed; width: 100%; height: 100%; z-index: -1; }
+    .theme-toggle {
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      background: #45a29e;
+      color: #fff;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-family: 'Orbitron', sans-serif;
     }
   </style>
 </head>
@@ -85,119 +169,29 @@
   <header>
     <h1>E‑Profile</h1>
     <p>A dedicated and results‑driven CSIT engineering student at REVA University, combining academic excellence with proven leadership and a relentless drive to succeed.</p>
+    <button class="theme-toggle" onclick="toggleTheme()">Switch Mode</button>
   </header>
 
   <section>
-    <h2>Education</h2>
-    <div class="card"><strong>REVA University | Bengaluru, India</strong><br>
-      B.Tech in CS&IT — Programming, Data Systems, Intelligent Technologies.</div>
-    <div class="card"><strong>Sri Chaitanya PU College | Bengaluru</strong><br>
-      Class 12 Science — Distinction, Runner‑Up in National Thinks Lab Competition (2024).</div>
-    <div class="card"><strong>Kendriya Vidyalaya Malleshwaram | Bengaluru</strong><br>
-      Class 10 Board Score: 87.8% | Rank #4<br>
-      Academic Merit Awards (2024 & 2025)<br>
-      Sports Excellence: Kabaddi & Football Championships<br>
-      Esports Achievements: Dota 2 Runner‑Up, StarCraft II & Counter‑Strike 2 Top Finishes<br>
-      Leadership: Class Representative (2023–2024), Esports Captain & In‑Game Leader.</div>
-  </section>
-
-  <section>
-    <h2>Technical Skills Overview</h2>
-    <div class="skills-container">
-      <canvas id="programmingChart" width="300" height="300"></canvas>
-      <canvas id="dataChart" width="300" height="300"></canvas>
-      <canvas id="analyticsChart" width="300" height="300"></canvas>
+    <h2>Education Timeline</h2>
+    <div class="timeline">
+      <div class="timeline-item">REVA University | B.Tech CS&IT</div>
+      <div class="timeline-item">Sri Chaitanya PU College | Class 12 Distinction</div>
+      <div class="timeline-item">KV Malleshwaram | Class 10 Board Score 87.8%</div>
+      <div class="timeline-item">Esports Achievements | Dota 2 Runner‑Up, StarCraft II, CS2</div>
     </div>
   </section>
 
   <section>
-    <h2>Soft Skills</h2>
-    <div class="soft-skill"><strong>Elite Leadership:</strong> Guided peers and esports teams with strategic vision and decisive direction.</div>
-    <div class="soft-skill"><strong>Impactful Communication:</strong> Bridged faculty and student interests, motivating squads with clear tactical calls.</div>
-    <div class="soft-skill"><strong>High‑Achieving Execution:</strong> Managed student operations and competitive teams to top finishes.</div>
-  </section>
-
-  <footer>
-    <p>© 2026 CSIT Engineering Student | REVA University</p>
-  </footer>
-
-  <script>
-    // Particle background
-    particlesJS("stars", {
-      "particles": {
-        "number": { "value": 120 },
-        "color": { "value": "#66fcf1" },
-        "shape": { "type": "circle" },
-        "opacity": { "value": 0.7 },
-        "size": { "value": 3 },
-        "line_linked": {
-          "enable": true,
-          "distance": 150,
-          "color": "#45a29e",
-          "opacity": 0.5,
-          "width": 1
-        },
-        "move": { "enable": true, "speed": 2 }
-      },
-      "interactivity": {
-        "events": {
-          "onhover": { "enable": true, "mode": "grab" },
-          "onclick": { "enable": true, "mode": "push" }
-        }
-      }
-    });
-
-    // Radial charts
-    const programmingCtx = document.getElementById('programmingChart').getContext('2d');
-    new Chart(programmingCtx, {
-      type: 'doughnut',
-      data: {
-        labels: ['Python 99%', 'C 89%', 'HTML 95%'],
-        datasets: [{
-          data: [99, 89, 95],
-          backgroundColor: ['#3498db', '#2980b9', '#1abc9c'],
-          borderWidth: 2
-        }]
-      },
-      options: {
-        animation: { animateScale: true, animateRotate: true },
-        plugins: { legend: { labels: { color: '#c5c6c7' } } }
-      }
-    });
-
-    const dataCtx = document.getElementById('dataChart').getContext('2d');
-    new Chart(dataCtx, {
-      type: 'doughnut',
-      data: {
-        labels: ['SQL 99%', 'Oracle 80%', 'Info Arch 92%'],
-        datasets: [{
-          data: [99, 80, 92],
-          backgroundColor: ['#2ecc71', '#27ae60', '#16a085'],
-          borderWidth: 2
-        }]
-      },
-      options: {
-        animation: { animateScale: true, animateRotate: true },
-        plugins: { legend: { labels: { color: '#c5c6c7' } } }
-      }
-    });
-
-    const analyticsCtx = document.getElementById('analyticsChart').getContext('2d');
-    new Chart(analyticsCtx, {
-      type: 'doughnut',
-      data: {
-        labels: ['Excel 99%', 'Word 90%', 'PowerPoint 85%'],
-        datasets: [{
-          data: [99, 90, 85],
-          backgroundColor: ['#e67e22', '#d35400', '#f39c12'],
-          borderWidth: 2
-        }]
-      },
-      options: {
-        animation: { animateScale: true, animateRotate: true },
-        plugins: { legend: { labels: { color: '#c5c6c7' } } }
-      }
-    });
-  </script>
-</body>
-</html>
+    <h2>Technical Skills Overview</h2>
+    <div class="skills-grid">
+      <div class="skill-block">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg"/>
+        <canvas id="programmingChart"></canvas>
+        <div class="progress-bar"><div class="progress-fill" style="--percent:99%"></div></div>
+      </div>
+      <div class="skill-block">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg"/>
+        <canvas id="dataChart"></canvas>
+        <div class="progress-bar"><div class="progress-fill" style="--percent:92%"></div></div>
+      </div>
