@@ -13,38 +13,51 @@
       --text-color: #c5c6c7;
       --header-bg: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
       --card-bg: rgba(31,40,51,0.9);
+      --accent-color: #66fcf1;
+      --border-color: #45a29e;
+      --canvas-bg: rgba(31, 40, 51, 0.4);
+      --star-opacity: 0.6;
     }
+    
     body.light {
       --bg-color: #f4f4f9;
-      --text-color: #222;
-      --header-bg: linear-gradient(135deg, #e0e0e0, #f9f9f9);
-      --card-bg: #fff;
+      --text-color: #222222;
+      --header-bg: linear-gradient(135deg, #cbd5e1, #e2e8f0, #f1f5f9);
+      --card-bg: #ffffff;
+      --accent-color: #0f766e;
+      --border-color: #0d9488;
+      --canvas-bg: rgba(226, 232, 240, 0.8);
+      --star-opacity: 0.1; /* Fade out particles in light mode */
     }
+    
     body {
       margin: 0;
       font-family: 'Orbitron', sans-serif;
       background: var(--bg-color);
       color: var(--text-color);
-      transition: background 0.5s, color 0.5s;
+      transition: background 0.4s ease, color 0.4s ease;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
     }
+    
     header {
       text-align: center;
       padding: 40px 20px;
       background: var(--header-bg);
-      color: #66fcf1;
+      color: var(--accent-color);
       animation: glowText 2s infinite alternate;
       position: relative;
+      transition: background 0.4s ease, color 0.4s ease;
     }
+    
     @keyframes glowText {
-      from { text-shadow: 0 0 8px #45a29e; }
-      to { text-shadow: 0 0 18px #66fcf1; }
+      from { text-shadow: 0 0 8px var(--border-color); }
+      to { text-shadow: 0 0 18px var(--accent-color); }
     }
+    
     h1 { font-size: 2em; margin: 0; }
     
-    /* Main container wrapper to handle better layout alignment */
     .main-content {
       flex: 1;
       max-width: 1000px;
@@ -56,29 +69,32 @@
 
     section {
       padding: 20px 0;
-      animation: fadeIn 1s ease forwards;
+      animation: fadeIn 0.8s ease forwards;
     }
+    
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
     }
     
     h2 {
-      color: #66fcf1;
-      border-bottom: 2px solid #45a29e;
+      color: var(--accent-color);
+      border-bottom: 2px solid var(--border-color);
       padding-bottom: 5px;
       margin-bottom: 20px;
       font-size: 1.3em;
+      transition: color 0.4s ease, border-color 0.4s ease;
     }
-    .timeline { position: relative; margin: 20px 0; padding-left: 20px; border-left: 2px solid #66fcf1; }
+    
+    .timeline { position: relative; margin: 20px 0; padding-left: 20px; border-left: 2px solid var(--accent-color); transition: border-color 0.4s ease; }
     .timeline-item { margin: 15px 0; position: relative; font-size: 0.95em; }
     .timeline-item::before {
       content: ''; position: absolute; left: -29px; top: 3px;
-      width: 15px; height: 15px; background: #66fcf1;
-      border-radius: 50%; box-shadow: 0 0 10px #45a29e;
+      width: 15px; height: 15px; background: var(--accent-color);
+      border-radius: 50%; box-shadow: 0 0 10px var(--border-color);
+      transition: background 0.4s ease, box-shadow 0.4s ease;
     }
     
-    /* Technical Skills Layout fixes */
     .skills-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -87,6 +103,7 @@
       align-items: center;
       margin-top: 20px;
     }
+    
     .skill-block { 
       text-align: center; 
       display: flex; 
@@ -94,45 +111,54 @@
       align-items: center;
       width: 100%;
     }
+    
     .skill-icon-wrap {
       display: flex;
       align-items: center;
       gap: 8px;
       margin-bottom: 12px;
     }
+    
     .skill-block img { width: 28px; height: 28px; object-fit: contain; }
     
-    /* Container container to keep canvas constrained */
     .chart-container {
       position: relative;
       width: 140px;
       height: 140px;
       margin-bottom: 15px;
     }
+    
     canvas {
       width: 140px !important; 
       height: 140px !important;
-      background: rgba(31, 40, 51, 0.4);
+      background: var(--canvas-bg);
       border-radius: 50%; 
       padding: 5px;
-      box-shadow: 0 0 8px #45a29e;
+      box-shadow: 0 0 8px var(--border-color);
+      transition: background 0.4s ease, box-shadow 0.4s ease;
     }
+    
     .progress-bar { width: 80%; background: #222; border-radius: 8px; overflow: hidden; margin: 10px 0; }
-    .progress-fill { height: 10px; width: 0; background: #66fcf1; animation: fillBar 2s forwards; }
+    .progress-fill { height: 10px; width: 0; background: var(--accent-color); animation: fillBar 2s forwards; transition: background 0.4s ease; }
     @keyframes fillBar { to { width: var(--percent); } }
     
     .badge {
-      display: inline-block; background: #45a29e; color: #fff;
+      display: inline-block; background: var(--border-color); color: #fff;
       padding: 5px 12px; border-radius: 12px; margin: 5px;
-      font-size: 0.85em; box-shadow: 0 0 10px #66fcf1;
+      font-size: 0.85em; box-shadow: 0 0 10px var(--accent-color);
+      transition: background 0.4s ease, box-shadow 0.4s ease;
     }
-    footer { text-align: center; padding: 20px; background: #0f2027; color: var(--text-color); font-size: 0.9em; margin-top: auto; }
-    #stars { position: fixed; width: 100%; height: 100%; z-index: -1; top: 0; left: 0; }
+    
+    footer { text-align: center; padding: 20px; background: #0f2027; color: var(--text-color); font-size: 0.9em; margin-top: auto; transition: color 0.4s ease; }
+    #stars { position: fixed; width: 100%; height: 100%; z-index: -1; top: 0; left: 0; transition: opacity 0.4s ease; }
+    
     .theme-toggle {
       position: absolute; top: 10px; right: 20px;
-      background: #45a29e; color: #fff; border: none;
+      background: var(--border-color); color: #fff; border: none;
       padding: 8px 12px; border-radius: 5px; cursor: pointer;
       font-family: 'Orbitron', sans-serif;
+      box-shadow: 0 0 5px rgba(0,0,0,0.3);
+      transition: background 0.4s ease;
     }
   </style>
 </head>
@@ -207,33 +233,30 @@
   </footer>
 
   <script>
-    // Initialize background particles
-    particlesJS("stars", {
-      "particles": {
-        "number": { "value": 80 },
-        "color": { "value": "#66fcf1" },
-        "shape": { "type": "circle" },
-        "opacity": { "value": 0.6 },
-        "size": { "value": 2 },
-        "line_linked": {
-          "enable": true,
-          "distance": 120,
-          "color": "#45a29e",
-          "opacity": 0.4,
-          "width": 1
-        },
-        "move": { "enable": true, "speed": 1.5 }
-      }
-    });
+    let activeCharts = [];
 
-    // Theme toggle logic
+    // Safe global theme switcher toggle
     function toggleTheme() {
-      document.body.classList.toggle('light');
+      const isLight = document.body.classList.toggle('light');
+      const starElement = document.getElementById('stars');
+      if(starElement) {
+        starElement.style.opacity = isLight ? "0.1" : "0.6";
+      }
+      
+      // Update chart colors dynamically to fit themes cleanly
+      const newAccent = isLight ? '#0f766e' : '#66fcf1';
+      activeCharts.forEach(chart => {
+        chart.data.datasets[0].backgroundColor[0] = newAccent;
+        chart.update();
+      });
     }
 
-    // Chart configs helper function
+    // Helper function to draw doughnut graphics safely
     function createDoughnutChart(chartId, percentValue, coreColor) {
-      const ctx = document.getElementById(chartId).getContext('2d');
+      const element = document.getElementById(chartId);
+      if (!element) return null;
+      
+      const ctx = element.getContext('2d');
       return new Chart(ctx, {
         type: 'doughnut',
         data: {
@@ -255,11 +278,37 @@
       });
     }
 
-    // Instantiate your 3 technical skill visual charts on window load
+    // Wait until the complete DOM structure safely populates before triggering scripts
     window.addEventListener('DOMContentLoaded', () => {
-      createDoughnutChart('programmingChart', 99, '#66fcf1');
-      createDoughnutChart('dataChart', 92, '#66fcf1');
-      createDoughnutChart('analyticsChart', 96, '#66fcf1');
+      // Initialize background particles
+      if (typeof particlesJS !== 'undefined') {
+        particlesJS("stars", {
+          "particles": {
+            "number": { "value": 80 },
+            "color": { "value": "#66fcf1" },
+            "shape": { "type": "circle" },
+            "opacity": { "value": 0.6 },
+            "size": { "value": 2 },
+            "line_linked": {
+              "enable": true,
+              "distance": 120,
+              "color": "#45a29e",
+              "opacity": 0.4,
+              "width": 1
+            },
+            "move": { "enable": true, "speed": 1.5 }
+          }
+        });
+      }
+
+      // Generate the functional skill metrics display panels
+      const c1 = createDoughnutChart('programmingChart', 99, '#66fcf1');
+      const c2 = createDoughnutChart('dataChart', 92, '#66fcf1');
+      const c3 = createDoughnutChart('analyticsChart', 96, '#66fcf1');
+      
+      if(c1) activeCharts.push(c1);
+      if(c2) activeCharts.push(c2);
+      if(c3) activeCharts.push(c3);
     });
   </script>
 </body>
