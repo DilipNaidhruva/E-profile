@@ -1,0 +1,30 @@
+#include <stdio.h>
+
+// Function to calculate the average of array elements
+double findAverage(int arr[], int size) {
+    int sum = 0;
+    
+    // Loop through the array to calculate the sum
+    for (int i = 0; i < size; i++) {
+        sum += arr[i];
+    }
+    
+    // Divide sum by number of elements to get average
+    return (double)sum / size;
+}
+
+int main() {
+    // Example array
+    int numbers[] = {3, 7, 2, 9, 5, 14, 8};
+    
+    // Calculate the number of elements in the array
+    int size = sizeof(numbers) / sizeof(numbers[0]);
+    
+    // Call the function and store the result
+    double avg_value = findAverage(numbers, size);
+    
+    // Print the result
+    printf("The average value of the array is: %.2f\n", avg_value);
+    
+    return 0;
+}
